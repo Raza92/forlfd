@@ -31,29 +31,31 @@ export class HomeComponent {
         this.data = JSON.parse(localStorage.getItem("currentUser"));
 
         this.list = [
-            {name: 'Ahmed Khurrum', relation: 'Base Node'},
-            {name: 'Kareem Khurrum', relation: 'Brother'},
-            {name: 'Sultan Khurrum', relation: 'Brother'},
-            {name: 'Azhar Khurrum', relation: 'Brother'},
-            {name: 'Faiz Ahmed ', relation: 'Son'},
-            {name: 'Hina Khurrum', relation: 'Wife'},
-            {name: 'Shugufta', relation: 'Mother'},
-            {name: 'Alina', relation: 'Mother-in-Law'},
-            {name: 'Khurrum Javed', relation: 'Father'},
-            {name: 'Zaid', relation: 'father-in-Law'},
-            {name: 'Sabiha', relation: 'Sister'},
+            {id:  0,name: 'Ahmed Khurrum', relation: 'Base Node'},
+            {id:  1,name: 'Kareem Khurrum', relation: 'Brother'},
+            {id:  2,name: 'Sultan Khurrum', relation: 'Brother'},
+            {id:  3,name: 'Azhar Khurrum', relation: 'Brother'},
+            {id:  4,name: 'Faiz Ahmed ', relation: 'Son'},
+            {id:  5,name: 'Hina Khurrum', relation: 'Wife'},
+            {id:  6,name: 'Shugufta', relation: 'Mother'},
+            {id:  7,name: 'Alina', relation: 'Mother-in-Law'},
+            {id:  8,name: 'Khurrum Javed', relation: 'Father'},
+            {id:  9,name: 'Zaid', relation: 'father-in-Law'},
+            {id:  10,name: 'Sabiha', relation: 'Sister'},
             
             ]
 
     }
 
     updateList(id: number, property: string, event: any) {
-        const editField = event.target.textContent;
+      
+        const editField = event;
         this.list[id][property] = editField;
       }
 
     remove(id: any) {
-        this.list.push(this.list[id]);
+      console.log(id)
+        //this.list.push(this.list[id]);
         this.list.splice(id, 1);
       }
 

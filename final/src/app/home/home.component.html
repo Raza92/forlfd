@@ -1,15 +1,6 @@
-<!-- <div class="card mt-4">
-    <h4 class="card-header">Welcome </h4>
-    <div class="card-body">
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}} - {{date| date:'dd-MM-yyyy'}}</li>
-        </ul>
-    </div>
-</div> -->
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -37,8 +28,9 @@
         </ul>
         <ul class="navbar-nav ml-auto" *ngIf="data">
             <li class="nav-item">
-                <a class="nav-link" style="color: #f7f7f9 !important;" href="" data-target="#myModal" data-toggle="modal">
-                    Welcome: <b> {{data['firstName']}} {{data['lastName']}}  ({{date| date:'dd-MMM-yyyy'}})</b> </a>
+                <a class="nav-link" style="color: #f7f7f9 !important;" href="" data-target="#myModal"
+                    data-toggle="modal">
+                    Welcome: <b> {{data['firstName']}} {{data['lastName']}} ({{date| date:'dd-MMM-yyyy'}})</b> </a>
             </li>
         </ul>
     </div>
@@ -47,40 +39,38 @@
 <div class="container">
 
     <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col">Relationship</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of list;  let i = index">
-            <td>
-                <div *ngIf="data['id'] == 1" > 
-                    <i class="fa fa-pencil" 
-                    (click)="user.isEditable=!user.isEditable" *ngIf="!user.isEditable"
-                     aria-hidden="true"></i>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Relationship</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of list;  let i = index">
+                <td>
+                    <div *ngIf="data['id'] == 1">
+                        <i class="fa fa-pencil" style="margin-right: 10px;" (click)="user.isEditable=!user.isEditable"
+                            *ngIf="!user.isEditable" aria-hidden="true"></i>
 
-                     <i class="fa fa-floppy-o"
-                     (click)="user.isEditable=!user.isEditable" *ngIf="user.isEditable"
-                      aria-hidden="true"></i>
-                   
-                </div>
-            </td>
-            <td>
-                 <span *ngIf="!user.isEditable">{{user.name}}</span>
-                 <input *ngIf="user.isEditable" type="text" [(ngModel)]="user.name"/>
-            </td>
-            <td>
-                <span *ngIf="!user.isEditable">{{user.relation}}</span>
-                <input *ngIf="user.isEditable" type="text" [(ngModel)]="user.relation"/>
-            </td>
-        </tr>
-    </tbody>
-  </table>
+                        <i class="fa fa-floppy-o" style="margin-right: 10px;" (click)="user.isEditable=!user.isEditable"
+                            *ngIf="user.isEditable" aria-hidden="true"></i>
 
+                        <i class="fa fa-trash-o" (click)="remove(i)" *ngIf="!user.isEditable" aria-hidden="true"></i>
 
-
-
+                    </div>
+                </td>
+                <td>
+                    <span *ngIf="!user.isEditable">{{user.name}}</span>
+                    <input *ngIf="user.isEditable" (keyup)="changeValue('user.id', 'name', $event)"
+                        (blur)="updateList(user.id, 'name', user.name)" type="text" [(ngModel)]="user.name" />
+                </td>
+                <td>
+                    <span *ngIf="!user.isEditable">{{user.relation}}</span>
+                    <input *ngIf="user.isEditable" (keyup)="changeValue(user.id, 'relation', $event)"
+                        (blur)="updateList(user.id, 'relation', user.relation)" type="text" [(ngModel)]="user.relation" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
